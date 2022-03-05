@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 
 const express = require("express");
 // Import and require mysql2
-//const mysql = require('mysql2');
 const mysql = require("mysql2/promise");
 
 const cTable = require("console.table");
@@ -24,28 +23,6 @@ async function viewDepartments() {
     return results;
 }
 
-//   return new Promise(resolve => {
-//     db.query(queryString, function (err, result) {
-//         if (err) throw err;
-//         resolve(true);
-//     });
-// });
-
-// db.query(queryString,(err,results)=>{
-//     if(err){
-//         throw err;
-//     }
-//     //console.log(results);
-//     if(view){
-//     console.table(results);
-//     }
-//     return results;
-// });
-
-// if(view){
-//     console.table(results);
-//     }
-
 async function getRolesNames() {
     queryString = "SELECT id, title AS name from role";
     const [results] = await db.query(queryString);
@@ -64,11 +41,7 @@ async function viewRoles() {
     return results;
 }
 
-// async function viewRoleNames() {
-//     queryString = "SELECT * from role";
-//     const [results] = await db.query(queryString);
-//     return results;
-// }
+
 
 async function viewEmployees() {
     queryString = "SELECT * from employee";
@@ -76,29 +49,7 @@ async function viewEmployees() {
     return results;
 }
 
-// function getNames(results) {
-//     Object.keys(results).forEach(function(key) {
-//         // var names = [];
-//         // var row = results[key];
-//         // names.push(row.name);
-//         // return names;
-//         var pairs = [];
-//         var row = results[key];
-//         pairs.push({ id: `${row.id}`, name: `row.name` });
-//         console.log(row.name);
-//         console.log(row.id);
-//         console.log(pairs);
 
-//         inquirer.prompt([{
-//             type: "list",
-//             name: "dept_name",
-//             message: "What's the department name?",
-//             choices: pairs,
-//         }, ]);
-
-//         return pairs;
-//     });
-// }
 
 async function addDepartment(name) {
     //console.log(name);
@@ -310,21 +261,8 @@ async function init() {
                 roleId = await getRoleId(answers.role_name);
                 await updateEmployeeRole(empId, roleId);
                 break;
-
-                // case "Nothing now, thanks":
-                //     done = true;
-                //     break;
         }
     }
 }
 
 init();
-
-// function updateRoleFirstPrompt(roleNames) {
-//     return inquirer.prompt([{
-//         type: 'list',
-//         message: ,
-//         choices: roleNames,
-//         name: "emp_name"
-//     }]);
-// }
